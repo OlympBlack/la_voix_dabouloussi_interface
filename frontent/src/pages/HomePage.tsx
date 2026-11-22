@@ -145,7 +145,7 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
 
       <section className="section section--pale">
         <div className="container-site">
-          {sectionTitre('Le JDA et le Parlement', 'Le mouvement', '#/jda')}
+          {sectionTitre('JDA et PJK', 'Le mouvement', '#/jda')}
           <div className="grid grid--3">
             {[...data.jda.slice(0, 2), ...data.parlement.slice(0, 1)].map((content) => (
               <ContentCard key={`${content.rubrique}-${content.id}`} content={content} />
