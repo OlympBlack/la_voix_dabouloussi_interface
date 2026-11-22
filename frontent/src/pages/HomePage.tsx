@@ -125,27 +125,6 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
         </div>
       </section>
 
-      {data.galerie.length > 0 && (
-        <section className="section section--pale">
-          <div className="container-site">
-            <div className="section-head">
-              <div>
-                <span className="section-eyebrow">Koko</span>
-                <h2 className="section-title">Images de Koko</h2>
-              </div>
-            </div>
-            <div className="grille-galerie">
-              {data.galerie.map((image) => (
-                <figure className="vignette-galerie" key={image.id}>
-                  <img src={image.image ?? ''} alt={image.titre} loading="lazy" />
-                  <figcaption>{image.resume || image.titre}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {data.journaux.length > 0 && (
         <section className="section" id="journaux">
           <div className="container-site">
