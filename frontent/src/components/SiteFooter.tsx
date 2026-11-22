@@ -4,15 +4,14 @@ import { setting } from '../config/site'
 const ANNEE = new Date().getFullYear()
 
 const LIENS_EXPLOITATION = [
-  { label: 'Journaux', href: '#/journaux' },
+  { label: 'Mon journal', href: '#/journaux' },
   { label: 'Le JDA', href: '#/jda' },
-  { label: 'Parlement des Jeunes', href: '#/parlement' },
+  { label: 'PJK', href: '#/parlement' },
   { label: 'Galeries photos', href: '#/albums' },
-  { label: 'Marché', href: '#/marche' },
 ]
 
 const LIENS_DECOUVRIR = [
-  { label: 'Dis-moi Grand-Père', href: '#/dms' },
+  { label: 'Dis-moi Grand-Père', href: '#/dis-moi-grand-pere' },
   { label: 'Contes', href: '#/contes' },
   { label: 'Poèmes', href: '#/poemes' },
   { label: 'Actualités', href: '#/actualites' },
@@ -29,12 +28,12 @@ export function SiteFooter({ settings }: { settings: Record<string, string> }) {
               <span className="brand-mark">VA</span>
               <span className="brand-texte">
                 <strong style={{ color: '#fff' }}>La Voix d'Abouloussi</strong>
-                <span>Association • Jeunesse • Développement</span>
+                <span>Association • Jeunes Dynamiques et Actions</span>
               </span>
             </a>
             <p style={{ fontSize: 13.5, marginBottom: 18 }}>
-              L'association des Jeunesses Développement Abouloussi donne la parole aux jeunes
-              et porte leurs idées à travers le JDA, le Parlement des Jeunes de Koko et ses publications.
+              L'association des Jeunes Dynamiques et Actions donne la parole aux jeunes
+              et porte leurs idées à travers le JDA, le Parlement des Jeunes de Koko et Mon journal.
             </p>
             <div className="footer-contact">
               <span><Icon name="map" size={14} /> {setting(settings, 'adresse')}</span>
@@ -62,7 +61,7 @@ export function SiteFooter({ settings }: { settings: Record<string, string> }) {
         </div>
         <div className="footer-bottom">
           <span>© {ANNEE} La Voix d'Abouloussi — Tous droits réservés.</span>
-          <span>Site réalisé par le <a href="#/jda">JDA</a></span>
+          <span>Site crée par <a href="https://juleschrist-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">Jules-christ GBASSI</a></span>
         </div>
       </div>
     </footer>

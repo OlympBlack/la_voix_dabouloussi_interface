@@ -8,13 +8,15 @@ import { ToastProvider } from './components/ToastViewport'
 import { useToast } from './hooks/useToast'
 import { AdminLayout, SiteLayout } from './components/Layouts'
 import { HomePage } from './pages/HomePage'
+import { JournalPage } from './pages/JournalPage'
+import { JdaPage } from './pages/JdaPage'
+import { ParlementPage } from './pages/ParlementPage'
+import { HistoirePage } from './pages/HistoirePage'
 import { RubriquePage } from './pages/RubriquePage'
 import { SearchPage } from './pages/SearchPage'
 import { DetailPage } from './pages/DetailPage'
 import { AlbumsPage } from './pages/AlbumsPage'
 import { AlbumDetailPage } from './pages/AlbumDetailPage'
-import { DmsPage } from './pages/DmsPage'
-import { DmsArticlePage } from './pages/DmsArticlePage'
 import { MarchePage } from './pages/MarchePage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
@@ -27,13 +29,13 @@ import type { AppRoute } from './hooks/useHashRoute'
 function Page({ route, settings, onLogin }: { route: AppRoute; settings: Record<string, string>; onLogin: (user: AuthUser) => void }) {
   switch (route.name) {
     case 'home':
-      return <HomePage />
+      return <HomePage settings={settings} />
     case 'journaux':
-      return <RubriquePage titre="Nos journaux" description="Les éditions et numéros publiés par La Voix d'Abouloussi." eyebrow="Publications" endpoint="journaux" />
+      return <JournalPage settings={settings} />
     case 'jda':
-      return <RubriquePage titre="Jeunesse Développement Abouloussi" description="Les actualités, rapports et actions du JDA." eyebrow="Le mouvement" endpoint="jda" />
+      return <JdaPage settings={settings} />
     case 'parlement':
-      return <RubriquePage titre="Parlement des Jeunes de Koko" description="Les sessions, débats et commissions des jeunes parlementaires." eyebrow="Le mouvement" endpoint="parlement" />
+      return <ParlementPage settings={settings} />
     case 'contes':
       return <RubriquePage titre="Contes" description="Les contes écrits et collectés par la jeunesse d'Abouloussi." eyebrow="Littérature" endpoint="contes" />
     case 'poemes':
@@ -44,10 +46,8 @@ function Page({ route, settings, onLogin }: { route: AppRoute; settings: Record<
       return <AlbumsPage />
     case 'albumDetail':
       return <AlbumDetailPage id={route.id} />
-    case 'dms':
-      return <DmsPage />
-    case 'dmsArticle':
-      return <DmsArticlePage slug={route.slug} />
+    case 'histoire':
+      return <HistoirePage settings={settings} />
     case 'marche':
       return <MarchePage />
     case 'aPropos':

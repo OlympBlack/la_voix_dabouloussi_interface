@@ -16,30 +16,19 @@ export function formatNumber(value: number): string {
   return new Intl.NumberFormat('fr-FR').format(value)
 }
 
-export function contentHref(rubrique: string, slug: string): string {
-  const sections: Record<string, string> = {
-    journal: 'journaux',
-    jda: 'jda',
-    parlement: 'parlement',
-    commission: 'parlement',
-    conte: 'contes',
-    poeme: 'poemes',
-    actualite: 'actualites',
-    dms: 'dms',
-  }
-  return `#/${sections[rubrique] ?? 'contenus'}/${encodeURIComponent(slug)}`
+export function contentHref(_rubrique: string, slug: string): string {
+  return `#/contenus/${encodeURIComponent(slug)}`
 }
 
 export function rubriqueLabel(rubrique: string): string {
   const labels: Record<string, string> = {
     journal: 'Journal',
     jda: 'JDA',
-    parlement: 'Parlement',
+    parlement: 'PJK',
     commission: 'Commission',
     conte: 'Conte',
     poeme: 'Poème',
     actualite: 'Actualité',
-    dms: 'Dis-moi Grand-Père',
     objectif: 'Objectif',
     identification: 'Identification',
     plan: 'Plan',

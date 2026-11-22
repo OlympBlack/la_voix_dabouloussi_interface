@@ -15,7 +15,7 @@ export function MentionsPage({ settings }: { settings: Record<string, string> })
         <div className="container-site" style={{ maxWidth: 860 }}>
           <div className="app-panel">
             <h3>Éditeur du site</h3>
-            <p>Association des Jeunesses Développement Abouloussi (JDA), {setting(settings, 'adresse')}.</p>
+            <p>Association des Jeunes Dynamiques et Actions (JDA), {setting(settings, 'adresse')}.</p>
             <p>Contact : {setting(settings, 'email')} — {setting(settings, 'telephone')}</p>
           </div>
           <div className="app-panel" style={{ marginTop: 20 }}>

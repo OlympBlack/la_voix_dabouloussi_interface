@@ -11,14 +11,13 @@ import { Icon } from '../components/Icons'
 
 const RUBRIQUES = [
   ['', 'Toutes les rubriques'],
-  ['journal', 'Journaux'],
+  ['journal', 'Mon journal'],
   ['jda', 'JDA'],
   ['parlement', 'Parlement'],
   ['commission', 'Commissions'],
   ['conte', 'Contes'],
   ['poeme', 'Poèmes'],
   ['actualite', 'Actualités'],
-  ['dms', 'Dis-moi Grand-Père'],
 ]
 
 export function SearchPage({ route }: { route: AppRoute & { name: 'recherche' } }) {

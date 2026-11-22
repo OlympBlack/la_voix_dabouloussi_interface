@@ -10,8 +10,7 @@ export type AppRoute =
   | { name: 'actualites'; path: string }
   | { name: 'albums'; path: string }
   | { name: 'albumDetail'; path: string; id: string }
-  | { name: 'dms'; path: string }
-  | { name: 'dmsArticle'; path: string; slug: string }
+  | { name: 'histoire'; path: string }
   | { name: 'marche'; path: string }
   | { name: 'aPropos'; path: string }
   | { name: 'contact'; path: string }
@@ -41,6 +40,7 @@ export function parseRoute(path: string, query = ''): AppRoute {
     case 'jda':
       return { name: 'jda', path }
     case 'parlement':
+    case 'pjk':
       return { name: 'parlement', path }
     case 'contes':
       return { name: 'contes', path }
@@ -52,10 +52,8 @@ export function parseRoute(path: string, query = ''): AppRoute {
       return segments[1]
         ? { name: 'albumDetail', path, id: segments[1] }
         : { name: 'albums', path }
-    case 'dms':
-      return segments[1]
-        ? { name: 'dmsArticle', path, slug: decodeURIComponent(segments[1]) }
-        : { name: 'dms', path }
+    case 'dis-moi-grand-pere':
+      return { name: 'histoire', path }
     case 'marche':
       return { name: 'marche', path }
     case 'a-propos':

@@ -20,11 +20,10 @@ interface NavItem {
 
 const LIENS: NavItem[] = [
   { label: 'Accueil', href: '#/', match: ['home'] },
-  { label: 'Journaux', href: '#/journaux', match: ['journaux'], rubriques: ['journal'] },
+  { label: 'Mon journal', href: '#/journaux', match: ['journaux'], rubriques: ['journal'] },
   { label: 'JDA', href: '#/jda', match: ['jda', 'albumDetail'], rubriques: ['jda'] },
-  { label: 'Parlement', href: '#/parlement', match: ['parlement'], rubriques: ['parlement', 'commission'] },
-  { label: 'Dis-moi Grand-Père', href: '#/dms', match: ['dms', 'dmsArticle'], rubriques: ['dms'] },
-  { label: 'Marché', href: '#/marche', match: ['marche'] },
+  { label: 'PJK', href: '#/parlement', match: ['parlement'], rubriques: ['parlement', 'commission'] },
+  { label: 'Dis-moi Grand-Père', href: '#/dis-moi-grand-pere', match: ['histoire'], rubriques: ['conte', 'poeme'] },
   { label: 'Contact', href: '#/contact', match: ['contact'] },
 ]
 
@@ -32,18 +31,10 @@ const SOUS_MENUS: Array<{ label: string; liens: Array<{ label: string; href: str
   {
     label: 'Le Mouvement',
     liens: [
-      { label: 'Jeunesse Développement Abouloussi', href: '#/jda', match: ['jda'] },
-      { label: 'Parlement des Jeunes de Koko', href: '#/parlement', match: ['parlement'] },
+      { label: 'Jeunes Dynamiques et Actions', href: '#/jda', match: ['jda'] },
+      { label: 'PJK', href: '#/parlement', match: ['parlement'] },
       { label: 'Galeries photos', href: '#/albums', match: ['albums', 'albumDetail'] },
       { label: 'Nos objectifs', href: '#/a-propos', match: ['aPropos'] },
-    ],
-  },
-  {
-    label: 'Publications',
-    liens: [
-      { label: 'Actualités', href: '#/actualites', match: ['actualites'] },
-      { label: 'Contes', href: '#/contes', match: ['contes'] },
-      { label: 'Poèmes', href: '#/poemes', match: ['poemes'] },
     ],
   },
 ]
@@ -67,7 +58,7 @@ export function SiteHeader({ route, settings, user, onLogout }: SiteHeaderProps)
             <li><Icon name="mail" size={13} />{setting(settings, 'email')}</li>
           </ul>
           <ul className="right-icons">
-            <li>Association • Jeunesse • Développement</li>
+            <li>Association • Jeunes Dynamiques et Actions</li>
           </ul>
         </div>
       </div>
@@ -78,7 +69,7 @@ export function SiteHeader({ route, settings, user, onLogout }: SiteHeaderProps)
             <span className="brand-mark">VA</span>
             <span className="brand-texte">
               <strong>La Voix d'Abouloussi</strong>
-              <span>Journaux & Jeunesse</span>
+              <span>Mon journal & Jeunesse</span>
             </span>
           </a>
 

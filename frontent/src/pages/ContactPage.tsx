@@ -79,6 +79,21 @@ export function ContactPage({ settings }: { settings: Record<string, string> }) 
               <div className="app-panel" style={{ marginTop: 20 }}>
                 <h3>Administration</h3>
                 <p>Administrateurs historiques : Jules-christ GBASSI, Oswald GNASSOUNOU, Ulrich KOUDOGBO et Delco ADOGBO.</p>
+                <div className="equipe-cards">
+                  {[
+                    { image: setting(settings, 'equipe_1'), nom: setting(settings, 'contact_admin_1') },
+                    { image: setting(settings, 'equipe_2'), nom: setting(settings, 'contact_admin_2') },
+                  ].map((personne, index) => (
+                    <figure className="equipe-card" key={personne.nom || index}>
+                      {personne.image ? (
+                        <img src={personne.image} alt={personne.nom} loading="lazy" />
+                      ) : (
+                        <span className="carte-couverture"><Icon name="user" size={36} /></span>
+                      )}
+                      <figcaption>{personne.nom}</figcaption>
+                    </figure>
+                  ))}
+                </div>
                 <a href="#/connexion" className="app-button app-button--outline app-button--sm">Accéder à l'espace réservé <Icon name="arrow-right" size={14} /></a>
               </div>
             </div>

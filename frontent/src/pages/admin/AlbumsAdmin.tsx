@@ -7,7 +7,7 @@ import { Icon } from '../../components/Icons'
 import { formatShortDate, rubriqueLabel } from '../../lib/format'
 import { AdminModal, AdminPageHeader, ActionButtons, ConfirmDialog } from './AdminUI'
 
-const RUBRIQUES = ['jda', 'parlement', 'journal', 'actualite', 'dms', 'page']
+const RUBRIQUES = ['jda', 'parlement', 'journal', 'actualite', 'page']
 
 interface Formulaire {
   titre: string

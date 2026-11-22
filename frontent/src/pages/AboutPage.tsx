@@ -35,10 +35,10 @@ export function AboutPage() {
           <div className="grid grid--2" style={{ alignItems: 'start' }}>
             <div>
               <span className="section-eyebrow">Notre identité</span>
-              <h2 className="section-title">Jeunesse Développement Abouloussi</h2>
+              <h2 className="section-title">Jeunes Dynamiques et Actions</h2>
               <p className="texte-justifie">
-                La Voix d'Abouloussi est le magazine de l'association des Jeunesses Développement Abouloussi (JDA).
-                Elle publie des journaux, anime le Parlement des Jeunes de Koko et accompagne les initiatives
+                La Voix d'Abouloussi est le magazine de l'association des Jeunes Dynamiques et Actions (JDA).
+                Elle publie Mon journal, anime le Parlement des Jeunes de Koko et accompagne les initiatives
                 locales dans l'éducation, la culture, l'environnement et la citoyenneté.
               </p>
               <p className="texte-justifie">

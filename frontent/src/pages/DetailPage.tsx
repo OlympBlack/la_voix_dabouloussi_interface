@@ -52,7 +52,7 @@ export function DetailPage({ slug }: { slug: string }) {
             <div className={estPoeme ? 'poeme-lecture' : 'article-lecture__corps'}>
               {estPoeme
                 ? <p style={{ whiteSpace: 'pre-line' }}>{nettoyerHtml(content.corps).replace(/<[^>]*>/g, '')}</p>
-                : <div dangerouslySetInnerHTML={{ __html: nettoyerHtml(content.corps) }} />}
+                : <div style={{ whiteSpace: 'pre-line' }} dangerouslySetInnerHTML={{ __html: nettoyerHtml(content.corps) }} />}
             </div>
             {content.document && (
               <div style={{ marginTop: 36 }}>

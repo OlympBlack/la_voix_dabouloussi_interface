@@ -1,6 +1,6 @@
 export type Rubrique =
   | 'journal' | 'jda' | 'parlement' | 'commission' | 'conte' | 'poeme'
-  | 'actualite' | 'dms' | 'objectif' | 'identification' | 'plan'
+  | 'actualite' | 'objectif' | 'identification' | 'plan'
   | 'administrateur' | 'page' | 'image';
 
 export type Statut = 'brouillon' | 'publie' | 'archive';
@@ -44,9 +44,10 @@ export interface HomeData {
   parlement: Content[];
   contes: Content[];
   poemes: Content[];
-  dms: Content[];
   objectif: Content[];
   identification: Content[];
+  plans: Content[];
+  galerie: Content[];
 }
 
 export interface AlbumPhoto {

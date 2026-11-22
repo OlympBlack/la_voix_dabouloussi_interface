@@ -133,13 +133,6 @@ export const api = {
   albums: () => apiRequest<{ data: Album[] }>('albums'),
   album: (id: number | string) => apiRequest<{ data: Album }>(`albums/${id}`),
 
-  dmsArticles: (query: Record<string, string | undefined> = {}) =>
-    apiRequest<Paginated<Content>>('dms/articles', { query }),
-  dmsArticle: (slug: string) =>
-    apiRequest<{ data: Content }>(`dms/articles/${encodeURIComponent(slug)}`),
-  dmsLike: (id: number) =>
-    apiRequest<{ message: string; likes: number }>(`dms/articles/${id}/like`, { method: 'POST' }),
-
   marketRayons: () => apiRequest<{ data: MarketRayon[] }>('market/rayons'),
   marketJeu: (chiffre: number, prix: number) =>
     apiRequest<{ data: unknown; message: string; somme: number }>('market/jeu', {
