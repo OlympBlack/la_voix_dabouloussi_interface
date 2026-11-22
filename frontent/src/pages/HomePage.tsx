@@ -27,8 +27,10 @@ function sectionTitre(titre: string, sousTitre: string, href?: string) {
 }
 
 export function HomePage({ settings }: { settings: Record<string, string> }) {
+  const heroTitre = setting(settings, 'hero_titre')
   const [data, setData] = useState<HomeData | null>(null)
   const [erreur, setErreur] = useState('')
+  const [titreAffiche, setTitreAffiche] = useState('')
 
   useEffect(() => {
     api.home()
@@ -36,10 +38,22 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
       .catch((e: unknown) => setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue'))
   }, [])
 
+  useEffect(() => {
+    if (!data || !heroTitre) return
+
+    let index = 0
+    const timer = window.setInterval(() => {
+      index += 1
+      setTitreAffiche(heroTitre.slice(0, index))
+      if (index >= heroTitre.length) window.clearInterval(timer)
+    }, 70)
+
+    return () => window.clearInterval(timer)
+  }, [data, heroTitre])
+
   if (erreur) return <div className="container-site section"><ErrorState message={erreur} /></div>
   if (!data) return <div className="container-site section"><LoadingState message="Chargement du site..." /></div>
 
-  const heroTitre = setting(settings, 'hero_titre')
   const heroSousTitre = setting(settings, 'hero_sous_titre')
   const heroImage = heroAccueil
 
@@ -83,7 +97,10 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
         style={{ backgroundImage: heroImage ? `linear-gradient(115deg, rgba(0, 56, 0, .9) 0%, rgba(0, 96, 0, .78) 48%, rgba(0, 32, 0, .6) 100%), url("${heroImage}")` : undefined }}
       >
         <div className="container-site">
-          <h1>{heroTitre}</h1>
+          <h1 aria-label={heroTitre}>
+            <span aria-hidden="true">{titreAffiche}</span>
+            <span className="curseur-typing" aria-hidden="true" />
+          </h1>
           <p>{heroSousTitre}</p>
           <div className="hero-actions">
             <a href="#/journaux" className="app-button app-button--light">Mon journal <Icon name="arrow-right" size={15} /></a>

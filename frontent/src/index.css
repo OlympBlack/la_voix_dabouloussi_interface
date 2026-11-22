@@ -83,6 +83,7 @@ button { cursor: pointer; }
 @keyframes smooth-reveal { 0% { opacity: 0; transform: translateY(30px); filter: blur(8px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 @keyframes app-spin { to { transform: rotate(360deg); } }
+@keyframes typing-caret { 50% { opacity: 0; } }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -200,7 +201,8 @@ button { cursor: pointer; }
   pointer-events: none;
 }
 .hero-accueil .container-site { position: relative; z-index: 2; padding: 72px 0; }
-.hero-accueil h1 { color: #fff; max-width: 760px; }
+.hero-accueil h1 { color: #fff; max-width: 760px; min-height: 1.2em; }
+.curseur-typing { display: inline-block; width: 3px; height: 0.95em; margin-left: 5px; background: #fff; vertical-align: -0.12em; animation: typing-caret 0.8s step-end infinite; }
 .hero-accueil p { color: rgba(255,255,255,0.9); font-size: 1.08rem; max-width: 640px; }
 .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.3); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
@@ -490,4 +492,8 @@ button { cursor: pointer; }
   .header-login-btn { padding: 0 12px; }
   .carousel-viewport { height: 230px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curseur-typing { animation: none; }
 }
