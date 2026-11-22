@@ -1,7 +1,6 @@
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react'
+import { useCallback, useState, type ReactNode } from 'react'
+import { ToastContext, type ToastKind } from '../hooks/useToast'
 import { Icon, type IconName } from './Icons'
-
-type ToastKind = 'success' | 'error' | 'info' | 'warning'
 
 interface Toast {
   id: number
@@ -9,14 +8,6 @@ interface Toast {
   titre: string
   message?: string
 }
-
-interface ToastContextValue {
-  notify: (titre: string, message?: string, kind?: ToastKind) => void
-  succes: (titre: string, message?: string) => void
-  erreur: (titre: string, message?: string) => void
-}
-
-const ToastContext = createContext<ToastContextValue | null>(null)
 
 const COULEURS: Record<ToastKind, { fond: string; texte: string; icone: IconName }> = {
   success: { fond: '#e7f6e7', texte: '#006400', icone: 'check' },
@@ -69,10 +60,4 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       </div>
     </ToastContext.Provider>
   )
-}
-
-export function useToast(): ToastContextValue {
-  const value = useContext(ToastContext)
-  if (!value) throw new Error('useToast doit etre utilise dans ToastProvider')
-  return value
 }

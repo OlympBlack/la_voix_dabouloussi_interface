@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { api, ApiError } from '../services/api'
 import type { Content } from '../types'
-import { useToast } from '../components/ToastViewport'
+import { useToast } from '../hooks/useToast'
 import { PageHero } from '../components/PageHero'
 import { ErrorState, LoadingState } from '../components/States'
 import { ContentCard } from '../components/ContentCard'

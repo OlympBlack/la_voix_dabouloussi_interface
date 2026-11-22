@@ -24,7 +24,7 @@ export function SiteLayout({ route, settings, user, onLogout, children }: Layout
 
   return (
     <div className="site-shell">
-      <SiteHeader route={route} settings={settings} user={user} onLogout={onLogout} />
+      <SiteHeader key={route.path} route={route} settings={settings} user={user} onLogout={onLogout} />
       <main id="contenu-principal">{children}</main>
       <SiteFooter settings={settings} />
       {afficherRetour && (
@@ -58,7 +58,7 @@ export function AdminLayout({ route, settings, user, onLogout, children }: Layou
 
   return (
     <div className="site-shell">
-      <SiteHeader route={route} settings={settings} user={user} onLogout={onLogout} />
+      <SiteHeader key={route.path} route={route} settings={settings} user={user} onLogout={onLogout} />
       <div className="admin-layout">
         <aside className="admin-sidebar">
           <div style={{ padding: '0 12px 18px', color: '#fff', fontWeight: 700 }}>

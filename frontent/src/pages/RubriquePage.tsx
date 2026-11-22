@@ -26,9 +26,8 @@ export function RubriquePage({ titre, description, eyebrow, endpoint }: Rubrique
 
   useEffect(() => {
     let annule = false
-    setErreur('')
     api.rubrique(endpoint, { q: terme || undefined, annee: annee || undefined, page, per_page: 12 })
-      .then((response) => { if (!annule) setResultats(response) })
+      .then((response) => { if (!annule) { setResultats(response); setErreur('') } })
       .catch((e: unknown) => { if (!annule) setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue') })
     return () => { annule = true }
   }, [endpoint, terme, annee, page])

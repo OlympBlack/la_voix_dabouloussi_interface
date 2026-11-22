@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { api, ApiError } from '../../services/api'
 import type { Category, Content, Paginated } from '../../types'
-import { useToast } from '../../components/ToastViewport'
+import { useToast } from '../../hooks/useToast'
 import { EmptyState, ErrorState, LoadingState } from '../../components/States'
 import { TablePagination } from '../../components/TablePagination'
 import { Icon } from '../../components/Icons'
@@ -43,9 +43,8 @@ export function ContentsAdmin() {
   const [suppression, setSuppression] = useState<Content | null>(null)
 
   const charger = useCallback(() => {
-    setErreur('')
     api.adminContents({ q: filtres.q || undefined, rubrique: filtres.rubrique || undefined, statut: filtres.statut || undefined, page: filtres.page })
-      .then(setResultats)
+      .then((response) => { setResultats(response); setErreur('') })
       .catch((e: unknown) => setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue'))
   }, [filtres])
 

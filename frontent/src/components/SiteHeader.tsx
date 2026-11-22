@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import type { AppRoute } from '../hooks/useHashRoute'
 import type { AuthUser } from '../types'
 import { setting } from '../config/site'
@@ -56,11 +56,6 @@ function estActif(match: string[], route: AppRoute, rubriques: string[] = []): b
 export function SiteHeader({ route, settings, user, onLogout }: SiteHeaderProps) {
   const [menuOuvert, setMenuOuvert] = useState(false)
   const [sousMenuOuvert, setSousMenuOuvert] = useState<string | null>(null)
-
-  useEffect(() => {
-    setMenuOuvert(false)
-    setSousMenuOuvert(null)
-  }, [route.path])
 
   return (
     <>

@@ -33,9 +33,8 @@ export function SearchPage({ route }: { route: AppRoute & { name: 'recherche' } 
 
   useEffect(() => {
     let annule = false
-    setErreur('')
     api.search({ q: qInitiale || undefined, rubrique: rubriqueInitiale || undefined, page, per_page: 12 })
-      .then((response) => { if (!annule) setResultats(response) })
+      .then((response) => { if (!annule) { setResultats(response); setErreur('') } })
       .catch((e: unknown) => { if (!annule) setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue') })
     return () => { annule = true }
   }, [qInitiale, rubriqueInitiale, page])

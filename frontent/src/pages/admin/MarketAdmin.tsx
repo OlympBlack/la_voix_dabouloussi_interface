@@ -1,7 +1,7 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { api, ApiError } from '../../services/api'
 import type { MarketRayon } from '../../types'
-import { useToast } from '../../components/ToastViewport'
+import { useToast } from '../../hooks/useToast'
 import { ErrorState, LoadingState } from '../../components/States'
 import { Icon } from '../../components/Icons'
 import { formatNumber } from '../../lib/format'
@@ -25,19 +25,19 @@ export function MarketAdmin() {
   const [enCours, setEnCours] = useState(false)
   const [suppression, setSuppression] = useState<Produit | null>(null)
 
-  const charger = () => {
+  const charger = useCallback(() => {
     api.adminMarketRayons()
       .then((response) => {
         setRayons(response.data)
-        if (!rayonId && response.data.length > 0) setRayonId(String(response.data[0].id))
+        setRayonId((actuel) => actuel || (response.data[0] ? String(response.data[0].id) : ''))
       })
       .catch((e: unknown) => setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue'))
     api.adminMarketProduits()
       .then((response) => setProduits(response.data))
       .catch((e: unknown) => setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue'))
-  }
+  }, [])
 
-  useEffect(() => { charger() }, [])
+  useEffect(() => { charger() }, [charger])
 
   const ajouter = (event: FormEvent) => {
     event.preventDefault()

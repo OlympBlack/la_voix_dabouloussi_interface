@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { api, ApiError } from '../services/api'
-import { useToast } from '../components/ToastViewport'
+import { useToast } from '../hooks/useToast'
 import { PageHero } from '../components/PageHero'
 import { Icon } from '../components/Icons'
 import { setting } from '../config/site'

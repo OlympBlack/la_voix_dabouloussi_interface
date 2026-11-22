@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { api, ApiError } from '../../services/api'
 import type { Media, Paginated } from '../../types'
-import { useToast } from '../../components/ToastViewport'
+import { useToast } from '../../hooks/useToast'
 import { EmptyState, ErrorState, LoadingState } from '../../components/States'
 import { TablePagination } from '../../components/TablePagination'
 import { Icon } from '../../components/Icons'

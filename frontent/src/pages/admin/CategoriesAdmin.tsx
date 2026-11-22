@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react'
 import { api, ApiError } from '../../services/api'
 import type { Category } from '../../types'
-import { useToast } from '../../components/ToastViewport'
+import { useToast } from '../../hooks/useToast'
 import { EmptyState, ErrorState, LoadingState } from '../../components/States'
 import { Icon } from '../../components/Icons'
 import { rubriqueLabel } from '../../lib/format'

@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { api, ApiError } from '../../services/api'
 import type { Setting } from '../../types'
-import { useToast } from '../../components/ToastViewport'
+import { useToast } from '../../hooks/useToast'
 import { ErrorState, LoadingState } from '../../components/States'
 import { AdminPageHeader } from './AdminUI'
 

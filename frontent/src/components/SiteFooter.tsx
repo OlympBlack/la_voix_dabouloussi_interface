@@ -1,6 +1,8 @@
 import { Icon } from './Icons'
 import { setting } from '../config/site'
 
+const ANNEE = new Date().getFullYear()
+
 const LIENS_EXPLOITATION = [
   { label: 'Journaux', href: '#/journaux' },
   { label: 'Le JDA', href: '#/jda' },
@@ -59,7 +61,7 @@ export function SiteFooter({ settings }: { settings: Record<string, string> }) {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} La Voix d'Abouloussi — Tous droits réservés.</span>
+          <span>© {ANNEE} La Voix d'Abouloussi — Tous droits réservés.</span>
           <span>Site réalisé par le <a href="#/jda">JDA</a></span>
         </div>
       </div>
