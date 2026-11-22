@@ -1,47 +1,69 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useHashRoute, type AppRoute } from './hooks/useHashRoute'
+import { useHashRoute } from './hooks/useHashRoute'
 import { api } from './services/api'
 import { clearSession, getStoredSession } from './services/session'
 import { flatSettings } from './config/site'
 import type { AuthUser } from './types'
 import { ToastProvider, useToast } from './components/ToastViewport'
 import { AdminLayout, SiteLayout } from './components/Layouts'
-import { PageHero } from './components/PageHero'
-import { Icon } from './components/Icons'
 import { HomePage } from './pages/HomePage'
+import { RubriquePage } from './pages/RubriquePage'
+import { SearchPage } from './pages/SearchPage'
+import { DetailPage } from './pages/DetailPage'
+import { AlbumsPage } from './pages/AlbumsPage'
+import { AlbumDetailPage } from './pages/AlbumDetailPage'
+import { DmsPage } from './pages/DmsPage'
+import { DmsArticlePage } from './pages/DmsArticlePage'
+import { MarchePage } from './pages/MarchePage'
+import { AboutPage } from './pages/AboutPage'
+import { ContactPage } from './pages/ContactPage'
+import { LoginPage } from './pages/LoginPage'
+import { MentionsPage } from './pages/MentionsPage'
+import { NotFoundPage } from './pages/NotFoundPage'
+import { AdminDashboard } from './pages/admin/AdminDashboard'
+import type { AppRoute } from './hooks/useHashRoute'
 
-const TITRES: Partial<Record<AppRoute['name'], { titre: string; description: string; eyebrow: string }>> = {
-  journaux: { titre: 'Nos journaux', description: 'Les éditions et numéros publiés par La Voix d’Abouloussi.', eyebrow: 'Publications' },
-  jda: { titre: 'Jeunesse Développement Abouloussi', description: 'Les actualités, rapports et actions du JDA.', eyebrow: 'Le mouvement' },
-  parlement: { titre: 'Parlement des Jeunes de Koko', description: 'Les sessions, débats et commissions des jeunes parlementaires.', eyebrow: 'Le mouvement' },
-  albums: { titre: 'Galeries photos', description: 'Les albums et reportages visuels de l’association.', eyebrow: 'Médiathèque' },
-  dms: { titre: 'Dis-moi Grand-Père', description: 'Contes, sagesses et récits du patrimoine.', eyebrow: 'Patrimoine' },
-  marche: { titre: 'SuperMarché + LIVBET', description: 'Les rayons, produits et jeux de la plateforme marchande.', eyebrow: 'Marché' },
-  contes: { titre: 'Contes', description: 'Les contes écrits et collectés par la jeunesse.', eyebrow: 'Littérature' },
-  poemes: { titre: 'Poèmes', description: 'La poésie des jeunes de la Voix d’Abouloussi.', eyebrow: 'Littérature' },
-  actualites: { titre: 'Actualités', description: 'Toutes les nouvelles du mouvement et de la région.', eyebrow: 'Publications' },
-  aPropos: { titre: 'À propos', description: 'Objectifs, identification et plan d’action de l’association.', eyebrow: 'Découvrir' },
-  contact: { titre: 'Contact', description: 'Écrivez à l’équipe de La Voix d’Abouloussi.', eyebrow: 'Nous joindre' },
-  recherche: { titre: 'Recherche', description: 'Retrouvez un article, un journal, un conte ou un poème.', eyebrow: 'Explorer' },
-  login: { titre: 'Connexion', description: 'Espace réservé aux administrateurs et rédacteurs.', eyebrow: 'Administration' },
-  mentions: { titre: 'Mentions légales', description: 'Informations légales et éditoriales du site.', eyebrow: 'Informations' },
-}
-
-function Chantier({ route }: { route: AppRoute }) {
-  const infos = TITRES[route.name] ?? { titre: 'Page en reconstruction', description: '', eyebrow: 'La Voix d’Abouloussi' }
-  return (
-    <>
-      <PageHero {...infos} fil={[{ label: 'Accueil', href: '#/' }, { label: infos.titre }]} />
-      <section className="section">
-        <div className="container-site">
-          <div className="app-panel">
-            <h3><Icon name="settings" size={18} /> Structure en cours de reconstruction</h3>
-            <p>Cette rubrique est présente dans la matrice de migration et sera alimentée à l’étape suivante.</p>
-          </div>
-        </div>
-      </section>
-    </>
-  )
+function Page({ route, settings, onLogin }: { route: AppRoute; settings: Record<string, string>; onLogin: (user: AuthUser) => void }) {
+  switch (route.name) {
+    case 'home':
+      return <HomePage />
+    case 'journaux':
+      return <RubriquePage titre="Nos journaux" description="Les éditions et numéros publiés par La Voix d'Abouloussi." eyebrow="Publications" endpoint="journaux" />
+    case 'jda':
+      return <RubriquePage titre="Jeunesse Développement Abouloussi" description="Les actualités, rapports et actions du JDA." eyebrow="Le mouvement" endpoint="jda" />
+    case 'parlement':
+      return <RubriquePage titre="Parlement des Jeunes de Koko" description="Les sessions, débats et commissions des jeunes parlementaires." eyebrow="Le mouvement" endpoint="parlement" />
+    case 'contes':
+      return <RubriquePage titre="Contes" description="Les contes écrits et collectés par la jeunesse d'Abouloussi." eyebrow="Littérature" endpoint="contes" />
+    case 'poemes':
+      return <RubriquePage titre="Poèmes" description="La poésie des jeunes de la Voix d'Abouloussi." eyebrow="Littérature" endpoint="poemes" />
+    case 'actualites':
+      return <RubriquePage titre="Actualités" description="Toutes les nouvelles du mouvement et de la région." eyebrow="Publications" endpoint="actualites" />
+    case 'albums':
+      return <AlbumsPage />
+    case 'albumDetail':
+      return <AlbumDetailPage id={route.id} />
+    case 'dms':
+      return <DmsPage />
+    case 'dmsArticle':
+      return <DmsArticlePage slug={route.slug} />
+    case 'marche':
+      return <MarchePage />
+    case 'aPropos':
+      return <AboutPage />
+    case 'contact':
+      return <ContactPage settings={settings} />
+    case 'recherche':
+      return <SearchPage route={route} />
+    case 'detail':
+      return <DetailPage slug={route.slug} />
+    case 'login':
+      return <LoginPage onLogin={onLogin} />
+    case 'mentions':
+      return <MentionsPage settings={settings} />
+    default:
+      return <NotFoundPage />
+  }
 }
 
 function Application() {
@@ -74,20 +96,14 @@ function Application() {
   if (route.name === 'admin') {
     return (
       <AdminLayout route={route} settings={settings} user={user} onLogout={deconnecter}>
-        <div className="admin-topbar">
-          <div>
-            <span className="section-eyebrow">Administration</span>
-            <h1 style={{ margin: 0, fontSize: '1.8rem' }}>Pilotage du site</h1>
-          </div>
-        </div>
-        <div className="app-panel"><p>Les outils CRUD seront disponibles à l’étape administration.</p></div>
+        <AdminDashboard route={route} user={user} />
       </AdminLayout>
     )
   }
 
   return (
     <SiteLayout route={route} settings={settings} user={user} onLogout={deconnecter}>
-      {route.name === 'home' ? <HomePage /> : <Chantier route={route} />}
+      <Page route={route} settings={settings} onLogin={setUser} />
     </SiteLayout>
   )
 }
