@@ -96,7 +96,7 @@ function Application() {
   if (route.name === 'admin') {
     return (
       <AdminLayout route={route} settings={settings} user={user} onLogout={deconnecter}>
-        <AdminDashboard route={route} user={user} />
+        <AdminDashboard route={route} />
       </AdminLayout>
     )
   }

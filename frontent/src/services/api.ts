@@ -61,12 +61,17 @@ function extractMessage(payload: unknown, fallback: string): string {
 }
 
 export async function apiRequest<T>(path: string, options: RequestOptions = {}): Promise<T> {
-  const { auth = false, query, body, headers, ...rest } = options
+  const { auth = false, query, body, headers, method = 'GET', ...rest } = options
   const token = auth ? getStoredSession()?.token : undefined
   const requestHeaders: Record<string, string> = { Accept: 'application/json', ...(headers as Record<string, string>) }
 
   let payload: BodyInit | undefined
+  let methode = method
   if (body instanceof FormData) {
+    if (methode === 'PUT' || methode === 'PATCH') {
+      body.append('_method', methode)
+      methode = 'POST'
+    }
     payload = body
   } else if (body !== undefined) {
     requestHeaders['Content-Type'] = 'application/json'
@@ -81,6 +86,7 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   try {
     response = await fetch(buildUrl(path, query), {
       ...rest,
+      method: methode,
       headers: requestHeaders,
       body: payload,
       signal: controller.signal,
@@ -222,7 +228,8 @@ export const api = {
       method: 'PUT', auth: true, body: { valeur },
     }),
 
-  adminContacts: () => apiRequest<Paginated<ContactMessage>>('admin/contacts', { auth: true }),
+  adminContacts: (query: Record<string, string | number | undefined> = {}) =>
+    apiRequest<Paginated<ContactMessage>>('admin/contacts', { auth: true, query }),
   adminUpdateContact: (id: number, statut: string) =>
     apiRequest<{ message: string }>(`admin/contacts/${id}`, {
       method: 'PATCH', auth: true, body: { statut },
@@ -231,6 +238,7 @@ export const api = {
     apiRequest<{ message: string }>(`admin/contacts/${id}`, { method: 'DELETE', auth: true }),
 
   adminMarketProduits: () => apiRequest<{ data: Array<{ id: number; prix: number; designation: string | null; rayon: { nom: string } }> }>('admin/market/produits', { auth: true }),
+  adminMarketRayons: () => apiRequest<{ data: MarketRayon[] }>('admin/market/rayons', { auth: true }),
   adminAddProduit: (rayon_id: number, prix: number, designation?: string) =>
     apiRequest<{ message: string }>('admin/market/produits', {
       method: 'POST', auth: true, body: { rayon_id, prix, designation },
