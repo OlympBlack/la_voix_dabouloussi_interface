@@ -19,6 +19,7 @@ import { AlbumsPage } from './pages/AlbumsPage'
 import { AlbumDetailPage } from './pages/AlbumDetailPage'
 import { MarchePage } from './pages/MarchePage'
 import { AboutPage } from './pages/AboutPage'
+import { KokoDecouvertePage } from './pages/KokoDecouvertePage'
 import { ContactPage } from './pages/ContactPage'
 import { LoginPage } from './pages/LoginPage'
 import { MentionsPage } from './pages/MentionsPage'
@@ -52,6 +53,8 @@ function Page({ route, settings, onLogin }: { route: AppRoute; settings: Record<
       return <MarchePage />
     case 'aPropos':
       return <AboutPage />
+    case 'kokoDecouverte':
+      return <KokoDecouvertePage />
     case 'contact':
       return <ContactPage settings={settings} />
     case 'recherche':

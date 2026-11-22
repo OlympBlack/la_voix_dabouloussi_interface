@@ -1,3 +1,5 @@
+import { API_BASE_URL } from '../services/api'
+
 export interface NavLink {
   label: string
   href: string
@@ -32,9 +34,9 @@ export const FOOTER_LINKS: NavLink[] = [
 
 export const DEFAULTS = {
   adresse: '08 BP 0266 Cotonou, Bénin',
-  email: 'lavoixdabouloussi@gmail.com',
+  email: 'karintobe@hotmail.com',
   email2: 'contact@lavoixdabouloussi.org',
-  telephone: '+229 01 97 52 74 24',
+  telephone: '(+229) 01 66 39 10 89',
   telephone2: '+229 96 11 47 52',
   hero_titre: "LA VOIX D'ABOULOUSSI",
   hero_sous_titre: "La voix d'Abouloussi est un magazine de jeunesse créé en 2006. L'objectif est d'amener les élèves à s'approprier de leur propre culture à travers les histoires qu'on leurs raconte et au même titre que leurs parents à s'informer mais surtout les faire lire;",
@@ -68,6 +70,7 @@ export const DEFAULTS = {
   jda_intro: "L'ONG Jeunes Dynamiques et Actions (JDA) est une organisation à but non lucratif règle par la loi de 1901. Elle est politiquement neutre et d'énvergure nationale.",
   jda_objectifs_titre: 'Objetifs',
   jda_objectifs: "L'ONG Jeunes Dynamiques et Actions (JDA) a pour objectif de:\n- oeuvrer pour l'excellence en milieu scolaire\n- Promouvoir l'entrepreneuriat des jeunes\n- Pormouvoir le droit des jeunes, des femmes et des enfants ainsi que des personnes handicapées\n- Oeuvre pour la restauration du couvert végétal.",
+  pjk_image: '',
   pjk_intro: 'Il s’agit d’un parlement local créé en 2017 et parrainé par la Fondation Tobé. Ce parlement est composé des responsables de classe du CEG-Koko. Il est le fruit de l’expérience de l’ancien Jeune parlementaire du Bénin Duconois ADJAKOSSA avec l’accompagnement de Hyacinthe Adémonla ATTOUNON, ressortissants de l’école Ayékè.',
   pjk_mission: 'Briser le joug de la honte de parler en publique (ce qui s’observe chez nombre d’apprenants de la localité) et amener les responsable à débattre des problèmes que rencontrent les élèves durant leur cursus en vue de trouver des voies de sortie.',
   pjk_organisation: 'Le Parlement des Jeunes de Koko est composé de cinq commissions à savoir : la commission Environnement, commission Education Scolaire, Commission Education Sexuelle, Commission Loisirs et Culture et la Commission Education Civique et Sociale.',
@@ -88,8 +91,15 @@ export function flatSettings(groupes?: Record<string, Record<string, string>>): 
 
 export function mediaUrl(valeur: string): string {
   if (!valeur) return ''
-  if (/^https?:\/\//.test(valeur) || valeur.startsWith('/')) return valeur
-  return `/storage/${valeur.replace(/^\.?\//, '')}`
+  if (/^https?:\/\//.test(valeur)) return valeur
+
+  const chemin = valeur.replace(/^\.?\//, '')
+  const relatif = chemin.startsWith('media/') ? `storage/${chemin}` : chemin
+  if (relatif.startsWith('storage/')) {
+    return `${API_BASE_URL.replace(/\/api\/?$/, '')}/${relatif}`
+  }
+
+  return `/${chemin}`
 }
 
 export function setting(settings: Record<string, string>, cle: keyof typeof DEFAULTS): string {

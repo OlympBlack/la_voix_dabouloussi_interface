@@ -32,6 +32,7 @@ export function ParlementPage({ settings }: { settings: Record<string, string> }
   const intro = setting(settings, 'pjk_intro')
   const mission = setting(settings, 'pjk_mission')
   const organisation = setting(settings, 'pjk_organisation')
+  const image = setting(settings, 'pjk_image')
 
   return (
     <>
@@ -39,6 +40,7 @@ export function ParlementPage({ settings }: { settings: Record<string, string> }
         eyebrow="PJK"
         titre="Le Parlement des Jeunes de Koko"
         description={intro}
+        image={image}
         fil={[{ label: 'Accueil', href: '#/' }, { label: 'PJK' }]}
       />
       <section className="section">

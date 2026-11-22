@@ -5,13 +5,17 @@ interface PageHeroProps {
   eyebrow: string
   titre: string
   description?: string
+  image?: string
   fil?: Array<{ label: string; href?: string }>
   children?: ReactNode
 }
 
-export function PageHero({ eyebrow, titre, description, fil, children }: PageHeroProps) {
+export function PageHero({ eyebrow, titre, description, image, fil, children }: PageHeroProps) {
   return (
-    <section className="page-hero">
+    <section
+      className={image ? 'page-hero page-hero--image' : 'page-hero'}
+      style={image ? { backgroundImage: `url(${image})` } : undefined}
+    >
       <div className="container-site">
         {fil && (
           <ol className="fil-ariane">

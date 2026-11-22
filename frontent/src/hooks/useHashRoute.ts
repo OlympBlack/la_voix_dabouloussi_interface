@@ -13,6 +13,7 @@ export type AppRoute =
   | { name: 'histoire'; path: string }
   | { name: 'marche'; path: string }
   | { name: 'aPropos'; path: string }
+  | { name: 'kokoDecouverte'; path: string }
   | { name: 'contact'; path: string }
   | { name: 'recherche'; path: string; query: string }
   | { name: 'detail'; path: string; slug: string; rubrique: string }
@@ -58,6 +59,8 @@ export function parseRoute(path: string, query = ''): AppRoute {
       return { name: 'marche', path }
     case 'a-propos':
       return { name: 'aPropos', path }
+    case 'koko-decouverte':
+      return { name: 'kokoDecouverte', path }
     case 'contact':
       return { name: 'contact', path }
     case 'recherche':

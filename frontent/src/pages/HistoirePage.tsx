@@ -42,6 +42,7 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
         eyebrow="Patrimoine"
         titre="Dis-moi Grand-Père"
         description={intro}
+        image={image}
         fil={[{ label: 'Accueil', href: '#/' }, { label: 'Dis-moi Grand-Père' }]}
       />
       <section className="section">
@@ -49,7 +50,6 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
           <div className="section-intro">
             <span className="section-eyebrow">La rubrique</span>
             <h2 className="section-title">{titre}</h2>
-            {image && <img className="image-intro" src={image} alt={titre} loading="lazy" />}
             <p className="texte-long">{intro}</p>
           </div>
 

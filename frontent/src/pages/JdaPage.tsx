@@ -29,6 +29,7 @@ export function JdaPage({ settings }: { settings: Record<string, string> }) {
         eyebrow="Le mouvement"
         titre="Jeunes Dynamiques et Actions"
         description={intro}
+        image={image}
         fil={[{ label: 'Accueil', href: '#/' }, { label: 'JDA' }]}
       />
       <section className="section">
@@ -36,7 +37,6 @@ export function JdaPage({ settings }: { settings: Record<string, string> }) {
           <div className="section-intro">
             <span className="section-eyebrow">Qui sommes-nous ?</span>
             <h2 className="section-title">Jeunes Dynamiques et Actions</h2>
-            {image && <img className="image-intro" src={image} alt="Jeunes Dynamiques et Actions" loading="lazy" />}
             <p className="texte-long">{intro}</p>
           </div>
 

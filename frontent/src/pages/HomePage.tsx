@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react'
+import heroAccueil from '../assets/7191918-incliner-un-arbre-vers-le-haut-photo.jpg'
 import { api, ApiError } from '../services/api'
 import { setting } from '../config/site'
 import type { Content, HomeData } from '../types'
 import { Carousel, type CarouselSlide } from '../components/Carousel'
 import { ContentCard } from '../components/ContentCard'
 import { ErrorState, LoadingState } from '../components/States'
-import { contentHref } from '../lib/format'
 import { Icon } from '../components/Icons'
 
-function sectionTitre(titre: string, sousTitre: string, href: string) {
+const imagesKokoDecouverte: CarouselSlide[] = Object.entries(
+  import.meta.glob('../assets/koko_decouverte/*', { eager: true, query: '?url', import: 'default' }) as Record<string, string>,
+)
+  .sort(([a], [b]) => a.localeCompare(b, 'fr'))
+  .map(([, image]) => ({ image, titre: 'Koko mon beau village', description: 'Découverte de Koko', href: '#/koko-decouverte' }))
+
+function sectionTitre(titre: string, sousTitre: string, href?: string) {
   return (
     <div className="section-head">
       <div>
         <span className="section-eyebrow">{sousTitre}</span>
         <h2 className="section-title">{titre}</h2>
       </div>
-      <a href={href} className="app-button app-button--outline app-button--sm">Tout voir <Icon name="arrow-right" size={14} /></a>
+      {href && <a href={href} className="app-button app-button--outline app-button--sm">Tout voir <Icon name="arrow-right" size={14} /></a>}
     </div>
   )
 }
@@ -35,21 +41,14 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
 
   const heroTitre = setting(settings, 'hero_titre')
   const heroSousTitre = setting(settings, 'hero_sous_titre')
-  const heroImage = setting(settings, 'hero_image') || setting(settings, 'carousel_1') || data.featured[0]?.image || ''
+  const heroImage = heroAccueil
 
-  const imagesCarousel = [
-    setting(settings, 'carousel_1'),
-    setting(settings, 'carousel_2'),
-    setting(settings, 'carousel_3'),
-  ].filter(Boolean)
-  const slides: CarouselSlide[] = imagesCarousel.length > 0
-    ? imagesCarousel.map((image) => ({ image, titre: heroTitre, description: '', href: '#/' }))
-    : data.featured.slice(0, 5).map((content) => ({
-      image: content.image,
-      titre: content.titre,
-      description: content.resume ?? '',
-      href: contentHref(content.rubrique, content.slug),
-    }))
+  const slidesKoko: CarouselSlide[] = data.galerie.flatMap((image) =>
+    image.image
+      ? [{ image: image.image, titre: 'Koko mon beau village', description: '', href: '#/koko-decouverte' }]
+      : [],
+  )
+  const slides = [...slidesKoko, ...imagesKokoDecouverte]
 
   const objectif = setting(settings, 'accueil_objectif_texte') || data.objectif[0]?.corps || ''
   const identification = setting(settings, 'accueil_identification_texte') || data.identification[0]?.corps || ''
@@ -84,7 +83,6 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
         style={{ backgroundImage: heroImage ? `linear-gradient(115deg, rgba(0, 56, 0, .9) 0%, rgba(0, 96, 0, .78) 48%, rgba(0, 32, 0, .6) 100%), url("${heroImage}")` : undefined }}
       >
         <div className="container-site">
-          <span className="hero-badge"><Icon name="leaf" size={15} /> Association des Jeunes Dynamiques et Actions</span>
           <h1>{heroTitre}</h1>
           <p>{heroSousTitre}</p>
           <div className="hero-actions">
@@ -96,20 +94,20 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
 
       {slides.length > 0 && (
         <div className="container-site" style={{ marginTop: -38, position: 'relative', zIndex: 5 }}>
-          <Carousel slides={slides} />
+          <Carousel slides={slides} libelleBouton="Découvrir mon village" className="carousel--koko" />
         </div>
       )}
 
       <section className="section section--pale" id="objectif">
         <div className="container-site">
-          {sectionTitre(setting(settings, 'accueil_objectif_titre'), 'Notre raison d’être', '#/a-propos')}
+          {sectionTitre(setting(settings, 'accueil_objectif_titre'), 'Notre raison d’être')}
           <p className="texte-long texte-large">{objectif}</p>
         </div>
       </section>
 
       <section className="section" id="identification">
         <div className="container-site">
-          {sectionTitre(setting(settings, 'accueil_identification_titre'), 'Identité', '#/a-propos')}
+          {sectionTitre(setting(settings, 'accueil_identification_titre'), 'Identité')}
           <p className="texte-long texte-large">{identification}</p>
           <div className="grille-plans">
             {plans.map((plan) => (

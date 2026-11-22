@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { navigate } from '../hooks/useHashRoute'
 import { Icon } from './Icons'
 
 export interface CarouselSlide {
@@ -8,7 +9,14 @@ export interface CarouselSlide {
   href: string
 }
 
-export function Carousel({ slides, intervale = 10000 }: { slides: CarouselSlide[]; intervale?: number }) {
+interface CarouselProps {
+  slides: CarouselSlide[]
+  intervale?: number
+  libelleBouton?: string
+  className?: string
+}
+
+export function Carousel({ slides, intervale = 10000, libelleBouton = 'En savoir plus', className = '' }: CarouselProps) {
   const [actif, setActif] = useState(0)
   const [pause, setPause] = useState(false)
 
@@ -25,7 +33,7 @@ export function Carousel({ slides, intervale = 10000 }: { slides: CarouselSlide[
   const aller = (index: number) => setActif(((index % slides.length) + slides.length) % slides.length)
 
   return (
-    <div className="carousel" onMouseEnter={() => setPause(true)} onMouseLeave={() => setPause(false)}>
+    <div className={`carousel ${className}`.trim()} onMouseEnter={() => setPause(true)} onMouseLeave={() => setPause(false)}>
       <div className="carousel-viewport">
         {slides.map((slide, index) => (
           <div key={`${slide.href}-${index}`} className={`carousel-slide ${index === actif ? 'actif' : ''}`}>
@@ -38,7 +46,18 @@ export function Carousel({ slides, intervale = 10000 }: { slides: CarouselSlide[
             <div className="carousel-caption">
               <h3>{slide.titre}</h3>
               <p>{slide.description}</p>
-              <a href={slide.href} className="app-button app-button--light app-button--sm">En savoir plus <Icon name="arrow-right" size={14} /></a>
+              <a
+                href={slide.href}
+                onClick={(event) => {
+                  if (slide.href.startsWith('#/')) {
+                    event.preventDefault()
+                    navigate(slide.href)
+                  }
+                }}
+                className="app-button app-button--light app-button--sm"
+              >
+                {libelleBouton} <Icon name="arrow-right" size={14} />
+              </a>
             </div>
           </div>
         ))}
