@@ -41,14 +41,36 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
   useEffect(() => {
     if (!data || !heroTitre) return
 
+    let timer = 0
     let index = 0
-    const timer = window.setInterval(() => {
+    let effacant = false
+
+    const animer = () => {
+      if (effacant) {
+        index -= 1
+        setTitreAffiche(heroTitre.slice(0, index))
+        if (index <= 0) {
+          effacant = false
+          timer = window.setTimeout(animer, 500)
+          return
+        }
+        timer = window.setTimeout(animer, 35)
+        return
+      }
+
       index += 1
       setTitreAffiche(heroTitre.slice(0, index))
-      if (index >= heroTitre.length) window.clearInterval(timer)
-    }, 70)
+      if (index >= heroTitre.length) {
+        effacant = true
+        timer = window.setTimeout(animer, 1800)
+        return
+      }
+      timer = window.setTimeout(animer, 75)
+    }
 
-    return () => window.clearInterval(timer)
+    timer = window.setTimeout(animer, 250)
+
+    return () => window.clearTimeout(timer)
   }, [data, heroTitre])
 
   if (erreur) return <div className="container-site section"><ErrorState message={erreur} /></div>
