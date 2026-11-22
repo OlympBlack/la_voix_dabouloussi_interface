@@ -1,12 +1,10 @@
 import { Fragment, useState } from 'react'
 import type { AppRoute } from '../hooks/useHashRoute'
 import type { AuthUser } from '../types'
-import { setting } from '../config/site'
 import { Icon } from './Icons'
 
 interface SiteHeaderProps {
   route: AppRoute
-  settings: Record<string, string>
   user: AuthUser | null
   onLogout: () => void
 }
@@ -44,25 +42,12 @@ function estActif(match: string[], route: AppRoute, rubriques: string[] = []): b
   return route.name === 'detail' && rubriques.includes(route.rubrique)
 }
 
-export function SiteHeader({ route, settings, user, onLogout }: SiteHeaderProps) {
+export function SiteHeader({ route, user, onLogout }: SiteHeaderProps) {
   const [menuOuvert, setMenuOuvert] = useState(false)
   const [sousMenuOuvert, setSousMenuOuvert] = useState<string | null>(null)
 
   return (
     <>
-      <div className="sub-header">
-        <div className="container-fluide">
-          <ul className="left-info">
-            <li><Icon name="map" size={13} />{setting(settings, 'adresse')}</li>
-            <li><Icon name="phone" size={13} />{setting(settings, 'telephone')}</li>
-            <li><Icon name="mail" size={13} />{setting(settings, 'email')}</li>
-          </ul>
-          <ul className="right-icons">
-            <li>Association • Jeunes Dynamiques et Actions</li>
-          </ul>
-        </div>
-      </div>
-
       <header className="site-header">
         <div className="container-fluide">
           <a href="#/" className="brand" aria-label="Accueil La Voix d'Abouloussi">
