@@ -6,6 +6,12 @@ import { PageHero } from '../components/PageHero'
 import { ErrorState, LoadingState } from '../components/States'
 import { Icon } from '../components/Icons'
 
+const imageDivinitesDecouverte = Object.entries(
+  import.meta.glob('../assets/koko_decouverte/*', { eager: true, query: '?url', import: 'default' }) as Record<string, string>,
+)
+  .sort(([a], [b]) => a.localeCompare(b, 'fr'))
+  .at(-1)?.[1] ?? ''
+
 export function JournalPage({ settings }: { settings: Record<string, string> }) {
   const [journaux, setJournaux] = useState<Content[] | null>(null)
   const [erreur, setErreur] = useState('')
@@ -19,7 +25,7 @@ export function JournalPage({ settings }: { settings: Record<string, string> }) 
   }, [])
 
   const imageJournal1 = mediaUrl(setting(settings, 'journal_image_1'))
-  const imageJournal2 = mediaUrl(setting(settings, 'journal_image_2'))
+  const imageJournal2 = imageDivinitesDecouverte || mediaUrl(setting(settings, 'journal_image_2'))
 
   const blocs = [
     {
