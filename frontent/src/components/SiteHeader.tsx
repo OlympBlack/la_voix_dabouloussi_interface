@@ -29,8 +29,6 @@ const SOUS_MENUS: Array<{ label: string; liens: Array<{ label: string; href: str
   {
     label: 'Le Mouvement',
     liens: [
-      { label: 'Jeunes Dynamiques et Actions', href: '#/jda', match: ['jda'] },
-      { label: 'PJK', href: '#/parlement', match: ['parlement'] },
       { label: 'Galeries photos', href: '#/albums', match: ['albums', 'albumDetail'] },
       { label: 'Nos objectifs', href: '#/a-propos', match: ['aPropos'] },
     ],
