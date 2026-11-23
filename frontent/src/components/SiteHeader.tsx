@@ -49,7 +49,7 @@ export function SiteHeader({ route, user, onLogout }: SiteHeaderProps) {
       <header className="site-header">
         <div className="container-fluide">
           <a href="#/" className="brand" aria-label="Accueil La Voix d'Abouloussi">
-            <span className="brand-mark">VA</span>
+            <span className="brand-mark">LVA</span>
             <span className="brand-texte">
               <strong>La Voix d'Abouloussi</strong>
               <span>Mon journal & Jeunesse</span>
@@ -111,7 +111,7 @@ export function SiteHeader({ route, user, onLogout }: SiteHeaderProps) {
           <button type="button" className="mobile-nav-backdrop" onClick={() => setMenuOuvert(false)} aria-label="Fermer le menu" />
           <aside className="mobile-drawer">
             <div className="row row--between" style={{ marginBottom: 24 }}>
-              <span className="brand-mark">VA</span>
+              <span className="brand-mark">LVA</span>
               <button type="button" className="navbar-toggler-btn" onClick={() => setMenuOuvert(false)} aria-label="Fermer"><Icon name="close" /></button>
             </div>
             <ul className="colcampus-nav">

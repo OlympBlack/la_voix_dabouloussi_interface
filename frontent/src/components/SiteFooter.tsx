@@ -25,7 +25,7 @@ export function SiteFooter({ settings }: { settings: Record<string, string> }) {
         <div className="footer-grid">
           <div>
             <a href="#/" className="brand" style={{ marginBottom: 18 }}>
-              <span className="brand-mark">VA</span>
+              <span className="brand-mark">LVA</span>
               <span className="brand-texte">
                 <strong style={{ color: '#fff' }}>La Voix d'Abouloussi</strong>
                 <span>Association • Jeunes Dynamiques et Actions</span>

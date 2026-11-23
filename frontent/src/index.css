@@ -120,7 +120,7 @@ button { cursor: pointer; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
 .brand-mark {
   width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0;
-  background: var(--color-primary); color: #fff; font-weight: 800; font-size: 18px;
+  background: var(--color-primary); color: #fff; font-weight: 800; font-size: 14px; letter-spacing: -0.4px;
   box-shadow: 0 6px 16px rgba(0, 128, 0, 0.3);
 }
 .brand-texte { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
@@ -480,7 +480,7 @@ button { cursor: pointer; }
 @media (max-width: 480px) {
   .site-header .container-fluide { gap: 8px; }
   .brand { gap: 8px; }
-  .brand-mark { width: 38px; height: 38px; font-size: 16px; }
+  .brand-mark { width: 38px; height: 38px; font-size: 12px; }
   .brand-texte strong { font-size: 15px; }
   .brand-texte span { display: none; }
   .header-actions-group { gap: 6px; }
