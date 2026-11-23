@@ -6,6 +6,15 @@ import type { Content, HomeData } from '../types'
 import { PageHero } from '../components/PageHero'
 import { ContentCard } from '../components/ContentCard'
 import { ErrorState, LoadingState } from '../components/States'
+import { Icon } from '../components/Icons'
+
+const NUMERO_WHATSAPP = '22955470002'
+const DEPOTS = ['Un conte', 'Un poème', 'Une légende', 'Un proverbe', 'Un autre texte']
+
+function lienWhatsapp(depot: string): string {
+  const message = `Bonjour, je souhaite déposer ${depot.toLowerCase()} dans la rubrique Dis-moi Grand-Père.`
+  return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(message)}`
+}
 
 function groupe(titre: string, contenus: Content[]) {
   return (
@@ -54,6 +63,31 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
               {groupe('Poèmes', data.poemes)}
             </>
           )}
+
+          <div className="section-depot">
+            <div className="section-head">
+              <div>
+                <span className="section-eyebrow">Vous avez une histoire ?</span>
+                <h2 className="section-title">Déposez votre conte, poème, légende ou proverbe</h2>
+                <p className="texte-long">
+                  Choisissez ce que vous souhaitez partager et écrivez-nous directement sur WhatsApp au 55 47 00 02.
+                </p>
+              </div>
+            </div>
+            <div className="row">
+              {DEPOTS.map((depot) => (
+                <a
+                  key={depot}
+                  href={lienWhatsapp(depot)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="app-button app-button--outline app-button--sm"
+                >
+                  <Icon name="send" size={14} /> {depot}
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
