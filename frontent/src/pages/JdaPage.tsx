@@ -63,6 +63,15 @@ export function JdaPage({ settings }: { settings: Record<string, string> }) {
               {resultats.data.map((content) => <ContentCard key={content.id} content={content} />)}
             </div>
           )}
+
+          <div className="section-intro">
+            <span className="section-eyebrow">Contact</span>
+            <h2 className="section-title">Nous contacter</h2>
+            <p className="texte-long">
+              Tél : {setting(settings, 'jda_telephone')}<br />
+              <a href={`mailto:${setting(settings, 'jda_email')}`}>{setting(settings, 'jda_email')}</a>
+            </p>
+          </div>
         </div>
       </section>
     </>
