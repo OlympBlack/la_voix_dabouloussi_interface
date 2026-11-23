@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import imageDgp from '../assets/dis_moi_grand_pere.jpeg'
 import { api, ApiError } from '../services/api'
 import { setting } from '../config/site'
 import type { Content, HomeData } from '../types'
@@ -34,7 +35,6 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
 
   const titre = setting(settings, 'dgp_intro_titre')
   const intro = setting(settings, 'dgp_intro_texte')
-  const image = setting(settings, 'dgp_intro_image')
 
   return (
     <>
@@ -42,7 +42,7 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
         eyebrow="Patrimoine"
         titre="Dis-moi Grand-Père"
         description={intro}
-        image={image}
+        image={imageDgp}
         fil={[{ label: 'Accueil', href: '#/' }, { label: 'Dis-moi Grand-Père' }]}
       />
       <section className="section">

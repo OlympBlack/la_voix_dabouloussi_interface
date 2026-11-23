@@ -1,3 +1,4 @@
+import imageDgp from '../assets/dis_moi_grand_pere.jpeg'
 import type { Content } from '../types'
 import { contentHref, formatDate, rubriqueLabel } from '../lib/format'
 import { Icon } from './Icons'
@@ -14,6 +15,8 @@ export function ContentCard({ content, compact = false, showResume = true }: Con
       <a href={contentHref(content.rubrique, content.slug)} className="app-card__media" aria-label={content.titre}>
         {content.image ? (
           <img src={content.image} alt={content.titre} loading="lazy" />
+        ) : content.rubrique === 'conte' || content.rubrique === 'poeme' ? (
+          <img src={imageDgp} alt={content.titre} loading="lazy" />
         ) : (
           <span className="carte-couverture"><Icon name={content.document ? 'file' : 'feather'} size={42} /></span>
         )}
