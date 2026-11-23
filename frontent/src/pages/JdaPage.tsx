@@ -35,12 +35,6 @@ export function JdaPage({ settings }: { settings: Record<string, string> }) {
       <section className="section">
         <div className="container-site">
           <div className="section-intro">
-            <span className="section-eyebrow">Qui sommes-nous ?</span>
-            <h2 className="section-title">Jeunes Dynamiques et Actions</h2>
-            <p className="texte-long">{intro}</p>
-          </div>
-
-          <div className="section-intro">
             <span className="section-eyebrow">Nos engagements</span>
             <h2 className="section-title">{objectifsTitre}</h2>
             <p className="texte-long">{objectifs}</p>

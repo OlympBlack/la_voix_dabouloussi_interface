@@ -33,7 +33,6 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
       .catch((e: unknown) => setErreur(e instanceof ApiError ? e.message : 'Erreur inconnue'))
   }, [])
 
-  const titre = setting(settings, 'dgp_intro_titre')
   const intro = setting(settings, 'dgp_intro_texte')
 
   return (
@@ -47,12 +46,6 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
       />
       <section className="section">
         <div className="container-site">
-          <div className="section-intro">
-            <span className="section-eyebrow">La rubrique</span>
-            <h2 className="section-title">{titre}</h2>
-            <p className="texte-long">{intro}</p>
-          </div>
-
           {erreur && <ErrorState message={erreur} />}
           {!erreur && !data && <LoadingState />}
           {data && (

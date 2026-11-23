@@ -46,11 +46,6 @@ export function ParlementPage({ settings }: { settings: Record<string, string> }
       <section className="section">
         <div className="container-site">
           <div className="section-intro">
-            <span className="section-eyebrow">Le mouvement</span>
-            <h2 className="section-title">Le Parlement des Jeunes de Koko</h2>
-            <p className="texte-long">{intro}</p>
-          </div>
-          <div className="section-intro">
             <span className="section-eyebrow">Pourquoi ?</span>
             <h2 className="section-title">Mission</h2>
             <p className="texte-long">{mission}</p>
