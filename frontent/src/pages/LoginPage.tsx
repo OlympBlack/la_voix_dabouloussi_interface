@@ -10,6 +10,7 @@ import type { AuthUser } from '../types'
 export function LoginPage({ onLogin }: { onLogin: (user: AuthUser) => void }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [motDePasseVisible, setMotDePasseVisible] = useState(false)
   const [enCours, setEnCours] = useState(false)
   const { succes, erreur } = useToast()
 
@@ -45,7 +46,18 @@ export function LoginPage({ onLogin }: { onLogin: (user: AuthUser) => void }) {
               </div>
               <div className="app-form-group">
                 <label className="app-label" htmlFor="login-password">Mot de passe</label>
-                <input id="login-password" className="app-field" type="password" required value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Votre mot de passe" />
+                <div className="app-password-field">
+                  <input id="login-password" className="app-field" type={motDePasseVisible ? 'text' : 'password'} required value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Votre mot de passe" />
+                  <button
+                    type="button"
+                    className="app-password-toggle"
+                    onClick={() => setMotDePasseVisible((visible) => !visible)}
+                    aria-label={motDePasseVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                    aria-pressed={motDePasseVisible}
+                  >
+                    <Icon name={motDePasseVisible ? 'eye-off' : 'eye'} size={18} />
+                  </button>
+                </div>
               </div>
               <button type="submit" className="app-button" disabled={enCours} style={{ width: '100%' }}>
                 <Icon name="user" size={16} /> {enCours ? 'Connexion...' : 'Se connecter'}
