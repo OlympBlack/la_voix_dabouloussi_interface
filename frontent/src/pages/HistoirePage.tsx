@@ -70,7 +70,7 @@ export function HistoirePage({ settings }: { settings: Record<string, string> })
                 <span className="section-eyebrow">Vous avez une histoire ?</span>
                 <h2 className="section-title">Déposez votre conte, poème, légende ou proverbe</h2>
                 <p className="texte-long">
-                  Choisissez ce que vous souhaitez partager et contactez-nous directement au 54470002 sur WhatsApp.
+                  Choisissez ce que vous souhaitez partager et contactez-nous directement sur WhatsApp.
                 </p>
               </div>
             </div>
