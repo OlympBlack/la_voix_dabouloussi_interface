@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api, ApiError } from '../services/api'
-import { setting } from '../config/site'
+import { mediaUrl, setting } from '../config/site'
 import type { Content } from '../types'
 import { PageHero } from '../components/PageHero'
 import { ErrorState, LoadingState } from '../components/States'
@@ -18,16 +18,19 @@ export function JournalPage({ settings }: { settings: Record<string, string> }) 
     return () => { annule = true }
   }, [])
 
+  const imageJournal1 = mediaUrl(setting(settings, 'journal_image_1'))
+  const imageJournal2 = mediaUrl(setting(settings, 'journal_image_2'))
+
   const blocs = [
     {
       titre: setting(settings, 'journal_titre_1'),
       texte: setting(settings, 'journal_texte_1'),
-      image: setting(settings, 'journal_image_1'),
+      image: imageJournal1,
     },
     {
       titre: setting(settings, 'journal_titre_2'),
       texte: setting(settings, 'journal_texte_2'),
-      image: setting(settings, 'journal_image_2'),
+      image: imageJournal2,
     },
   ]
 
@@ -37,6 +40,7 @@ export function JournalPage({ settings }: { settings: Record<string, string> }) 
         eyebrow="Mon journal"
         titre="Mon journal"
         description={setting(settings, 'journal_telechargement_texte')}
+        image={imageJournal1}
         fil={[{ label: 'Accueil', href: '#/' }, { label: 'Mon journal' }]}
       />
       <section className="section section--pale">
