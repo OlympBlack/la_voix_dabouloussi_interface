@@ -169,7 +169,7 @@ button { cursor: pointer; }
   animation: modalSlideUp 0.25s ease;
 }
 .mobile-drawer { color: var(--color-ink); }
-.mobile-drawer .colcampus-nav { flex-direction: column; align-items: stretch; gap: 6px; }
+.mobile-drawer .colcampus-nav { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
 .mobile-drawer .colcampus-nav > li { width: 100%; }
 .mobile-drawer .nav-link {
   justify-content: space-between; width: 100%; padding: 13px 14px;

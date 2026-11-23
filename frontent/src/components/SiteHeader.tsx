@@ -119,12 +119,12 @@ export function SiteHeader({ route, user, onLogout }: SiteHeaderProps) {
             <ul className="colcampus-nav">
               {LIENS.map((lien) => (
                 <li key={lien.label} className={estActif(lien.match, route, lien.rubriques ?? []) ? 'active' : ''}>
-                  <a href={lien.href} className="nav-link">{lien.label}<Icon name="chevron-right" size={14} /></a>
+                  <a href={lien.href} className="nav-link" onClick={() => setMenuOuvert(false)}>{lien.label}<Icon name="chevron-right" size={14} /></a>
                 </li>
               ))}
               {SOUS_MENUS.flatMap((sousMenu) => sousMenu.liens).map((lien) => (
                 <li key={`mobile-${lien.href}`}>
-                  <a href={lien.href} className="nav-link">{lien.label}<Icon name="chevron-right" size={14} /></a>
+                  <a href={lien.href} className="nav-link" onClick={() => setMenuOuvert(false)}>{lien.label}<Icon name="chevron-right" size={14} /></a>
                 </li>
               ))}
             </ul>
