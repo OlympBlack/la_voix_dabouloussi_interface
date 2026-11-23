@@ -20,12 +20,7 @@ export function resolveApiBase(): string {
   const configured = import.meta.env.VITE_API_URL
   if (configured) return String(configured).replace(/\/$/, '')
 
-  if (typeof window === 'undefined') return 'http://localhost:8000/api'
-  const host = window.location.hostname
-  if (host && host !== 'localhost' && host !== '127.0.0.1') {
-    return `http://${host}:8000/api`
-  }
-  return 'http://localhost:8000/api'
+  return 'https://lavoixdabouloussi-api.lavoixdabouloussi.org/api'
 }
 
 export const API_BASE_URL = resolveApiBase()

@@ -29,7 +29,7 @@ Sous-rubriques conservées : objectif, images, identification, les plans, admini
 | Composant / mécanisme ColoCampus | Réutilisation prévue | Adaptation |
 |---|---|---|
 | `useHashRoute.ts` | routage client par hash (aucun react-router à installer) | routes éditoriales ci-dessus |
-| `services/api.ts`, `services/session.ts` | client fetch + token Bearer + timeout + `ApiError` | base URL `VITE_API_URL` / `http://<host>:8000/api` |
+| `services/api.ts`, `services/session.ts` | client fetch + token Bearer + timeout + `ApiError` | base URL `VITE_API_URL` / `https://lavoixdabouloussi-api.lavoixdabouloussi.org/api` |
 | `layout/SiteHeader.tsx` + `index.css` (nav, dropdown, mobile drawer, états actifs) | header à 2 niveaux, menu mobile, recherche, lien admin | libellés des rubriques, vert `#008000` |
 | `layout/SiteFooter.tsx` | footer complet + crédits historiques | mentions La Voix d'Abouloussi |
 | `components/PageHero.tsx` | bannière + fil d'Ariane commune à toutes les rubriques | image baobab de l'ancien site |
