@@ -55,13 +55,12 @@ export function SiteFooter({ settings }: { settings: Record<string, string> }) {
               <li><a href="#/a-propos">À propos de nous</a></li>
               <li><a href="#/mentions-legales">Mentions légales</a></li>
               <li><a href="#/contact">Contact</a></li>
-              <li><a href="#/admin">Espace administrateur</a></li>
             </ul>
           </div>
         </div>
         <div className="footer-bottom">
           <span>© {ANNEE} La Voix d'Abouloussi — Tous droits réservés.</span>
-          <span>Site crée par <a href="https://juleschrist-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">Jules-christ GBASSI</a></span>
+          <span>Site crée et installé par <a href="https://juleschrist-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer">Jules-christ GBASSI</a></span>
         </div>
       </div>
     </footer>

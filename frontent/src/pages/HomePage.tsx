@@ -12,7 +12,7 @@ const imagesKokoDecouverte: CarouselSlide[] = Object.entries(
   import.meta.glob('../assets/koko_decouverte/*', { eager: true, query: '?url', import: 'default' }) as Record<string, string>,
 )
   .sort(([a], [b]) => a.localeCompare(b, 'fr'))
-  .map(([, image]) => ({ image, titre: 'Koko mon beau village', description: 'Découverte de Koko', href: '#/koko-decouverte' }))
+  .map(([, image]) => ({ image, titre: 'Koko, mon beau village', description: 'Découverte de Koko', href: '#/koko-decouverte' }))
 
 function sectionTitre(titre: string, sousTitre: string, href?: string) {
   return (
@@ -81,7 +81,7 @@ export function HomePage({ settings }: { settings: Record<string, string> }) {
 
   const slidesKoko: CarouselSlide[] = data.galerie.flatMap((image) =>
     image.image
-      ? [{ image: image.image, titre: 'Koko mon beau village', description: '', href: '#/koko-decouverte' }]
+      ? [{ image: image.image, titre: 'Koko, mon beau village', description: '', href: '#/koko-decouverte' }]
       : [],
   )
   const slides = [...slidesKoko, ...imagesKokoDecouverte]

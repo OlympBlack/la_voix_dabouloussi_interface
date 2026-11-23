@@ -35,9 +35,9 @@ export const FOOTER_LINKS: NavLink[] = [
 export const DEFAULTS = {
   adresse: '08 BP 0266 Cotonou, Bénin',
   email: 'karintobe@hotmail.com',
-  email2: 'contact@lavoixdabouloussi.org',
-  telephone: '(+229) 01 66 39 10 89',
-  telephone2: '+229 96 11 47 52',
+  email2: 'akoredeatt@gmail.com',
+  telephone: '+229 01 66 39 10 89',
+  telephone2: '+229 95 05 05 46',
   hero_titre: "LA VOIX D'ABOULOUSSI",
   hero_sous_titre: "La voix d'Abouloussi est un magazine de jeunesse créé en 2006. L'objectif est d'amener les élèves à s'approprier de leur propre culture à travers les histoires qu'on leurs raconte et au même titre que leurs parents à s'informer mais surtout les faire lire;",
   hero_image: '',

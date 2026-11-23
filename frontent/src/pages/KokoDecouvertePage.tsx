@@ -34,9 +34,9 @@ export function KokoDecouvertePage() {
     <>
       <PageHero
         eyebrow="Découverte"
-        titre="Koko mon beau village"
+        titre="Koko, mon beau village"
         description="Un regard sur Koko, ses visages et ses lieux à travers cette galerie de photographies."
-        fil={[{ label: 'Accueil', href: '#/' }, { label: 'Koko mon beau village' }]}
+        fil={[{ label: 'Accueil', href: '#/' }, { label: 'Koko, mon beau village' }]}
       />
       <section className="section section--pale">
         <div className="container-site">
@@ -44,7 +44,7 @@ export function KokoDecouvertePage() {
             {imagesKokoDecouverte.map((image, index) => (
               <figure className="vignette-galerie" key={image.id}>
                 <button type="button" className="vignette-galerie__button" onClick={() => ouvrir(index)} aria-label="Agrandir l'image">
-                  <img src={image.url} alt="Koko mon beau village" loading="lazy" />
+                  <img src={image.url} alt="Koko, mon beau village" loading="lazy" />
                 </button>
               </figure>
             ))}
@@ -66,7 +66,7 @@ export function KokoDecouvertePage() {
             <div className="galerie-lightbox__viewport">
               <img
                 src={imagesKokoDecouverte[indexActif].url}
-                alt="Koko mon beau village"
+                alt="Koko, mon beau village"
                 style={{ transform: `scale(${zoom})` }}
               />
             </div>

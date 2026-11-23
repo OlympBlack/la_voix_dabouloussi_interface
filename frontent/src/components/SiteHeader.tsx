@@ -95,13 +95,11 @@ export function SiteHeader({ route, user, onLogout }: SiteHeaderProps) {
 
           <div className="header-actions-group">
             <a href="#/recherche" className="header-search-btn" aria-label="Rechercher"><Icon name="search" /></a>
-            {user ? (
+            {user && (
               <>
                 <a href="#/admin" className="header-login-btn"><Icon name="layout" size={16} /><span>{user.name.split(' ')[0]}</span></a>
                 <button type="button" className="header-action-btn" onClick={onLogout} aria-label="Se déconnecter"><Icon name="logout" size={17} /></button>
               </>
-            ) : (
-              <a href="#/connexion" className="header-login-btn"><Icon name="user" size={16} /><span>Connexion</span></a>
             )}
             <button type="button" className="navbar-toggler-btn" onClick={() => setMenuOuvert(true)} aria-label="Ouvrir le menu">
               <Icon name="menu" />

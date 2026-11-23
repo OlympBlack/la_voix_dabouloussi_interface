@@ -78,7 +78,7 @@ export function ContactPage({ settings }: { settings: Record<string, string> }) 
               </div>
               <div className="app-panel" style={{ marginTop: 20 }}>
                 <h3>Administration</h3>
-                <p>Administrateurs historiques : Jules-christ GBASSI, Oswald GNASSOUNOU, Ulrich KOUDOGBO et Delco ADOGBO.</p>
+                <p>Administrateurs historiques : Karin OSTERTAG et Ademonla Hyacinth ATTOUNON.</p>
                 <div className="equipe-cards">
                   {[
                     { image: setting(settings, 'equipe_1'), nom: setting(settings, 'contact_admin_1') },
