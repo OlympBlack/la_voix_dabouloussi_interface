@@ -41,7 +41,7 @@ export function LoginPage({ onLogin }: { onLogin: (user: AuthUser) => void }) {
             <form onSubmit={soumettre}>
               <div className="app-form-group">
                 <label className="app-label" htmlFor="login-email">Adresse e-mail</label>
-                <input id="login-email" className="app-field" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="admin@lavoixdabouloussi.org" />
+                <input id="login-email" className="app-field" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} />
               </div>
               <div className="app-form-group">
                 <label className="app-label" htmlFor="login-password">Mot de passe</label>
@@ -51,9 +51,6 @@ export function LoginPage({ onLogin }: { onLogin: (user: AuthUser) => void }) {
                 <Icon name="user" size={16} /> {enCours ? 'Connexion...' : 'Se connecter'}
               </button>
             </form>
-            <p style={{ fontSize: 12.5, color: 'var(--color-muted)', marginTop: 18, marginBottom: 0 }}>
-              Les comptes sont créés par l'administrateur principal. Aucune inscription publique n'est autorisée.
-            </p>
           </div>
         </div>
       </section>
